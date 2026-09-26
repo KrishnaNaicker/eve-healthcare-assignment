@@ -10,11 +10,22 @@ Core behavior is intentionally being implemented step by step as a learning exer
 - Docker Compose for the API and PostgreSQL
 - pytest and FastAPI's generated OpenAPI/Swagger UI
 
-## Current status
+## Current progress
 
-The repository has an app entry point, feature route placeholders, environment settings,
-Docker configuration, and starter tests. Most business endpoints currently return
-`501 Not Implemented`; this is a scaffold, not a finished assignment submission.
+This is an in-progress learning project, not a finished assignment submission.
+
+| Area | Progress |
+| --- | --- |
+| App scaffold, root/health routes, JSON logging | Started |
+| Environment settings and SQLAlchemy connection/session setup | Scaffolded |
+| Docker Compose with PostgreSQL and API | Scaffolded |
+| Swagger/OpenAPI and paginated centre-list inputs | Scaffolded |
+| Starter API tests | Written, not yet run |
+| SQLAlchemy data models | In progress; the centre model draft still needs correction |
+| Signup, login, JWT, database-backed centres/tests, bookings, payments, webhook | Not implemented |
+
+The feature routers are placeholders, and several endpoints return `501 Not Implemented`.
+The centre-list route currently returns an empty placeholder response rather than querying PostgreSQL.
 
 ## Run locally with Docker
 
@@ -35,8 +46,9 @@ Docker configuration, and starter tests. Most business endpoints currently retur
 
 `User` owns `Booking` records. A `DiagnosticCentre` offers `DiagnosticTest` records with a
 price. A `Booking` references the selected offered test and stores an amount snapshot and
-appointment time. `Payment` references a booking and stores a unique provider event ID so
-duplicate webhook deliveries can be safely ignored.
+appointment time. `Payment` references a booking. A separate webhook-event record will
+store unique provider event IDs so duplicate deliveries can be safely ignored while still
+allowing multiple events for one payment.
 
 ## Planned endpoints
 
@@ -61,8 +73,9 @@ duplicate webhook deliveries can be safely ignored.
 
 ## Tests
 
-Run `pytest`. More tests will be added as authentication, booking, payment, webhook,
-idempotency, and authorization behavior is implemented.
+Run `pytest`. The current starter tests cover the health route and pagination validation;
+they have not yet been run. Tests for authentication, booking, payment, webhook,
+idempotency, and authorization will be added as those features are implemented.
 
 ## Assumptions and future improvements
 

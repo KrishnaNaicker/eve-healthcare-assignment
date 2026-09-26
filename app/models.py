@@ -1,4 +1,4 @@
-"""Database model TODOs (the SQLAlchemy tables will be written with you).
+"""Database model.
 
 Planned tables:
 - User: login identity and password hash.
@@ -11,3 +11,16 @@ Relationships use primary keys and foreign keys. A unique webhook event ID lets 
 duplicate delivery be detected safely. We will turn this outline into real models
 when we study SQLAlchemy and relational keys.
 """
+
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column
+
+from app.database import Base
+
+class DiagnosticCentre(Base):
+
+    __tablename__ = "DiagnosticCentres"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(120))
+    Location: Mapped[str] = mapped_column(String(120))

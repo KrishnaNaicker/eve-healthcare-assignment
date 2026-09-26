@@ -1,9 +1,8 @@
-"""Application entry point. Feature behavior will be implemented incrementally."""
-
+#application entry point.
 import logging
 
 from fastapi import FastAPI
-from pythonjsonlogger.json import JsonFormatter
+from pythonjsonlogger.json import JsonFormatter # type: ignore
 
 from app.routers import auth, bookings, centres, payments
 
@@ -23,6 +22,9 @@ app.include_router(centres.router)
 app.include_router(bookings.router)
 app.include_router(payments.router)
 
+@app.get("/")
+def root():
+    return {"message": "Welcome to EVE Healthcare API. Please refer to the documentation at /docs for available endpoints."}
 
 @app.get("/health", tags=["health"])
 def health_check() -> dict[str, str]:
