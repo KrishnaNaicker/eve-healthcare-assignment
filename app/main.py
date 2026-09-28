@@ -19,6 +19,7 @@ app = FastAPI(title="EVE Healthcare API", version="0.1.0")
 
 app.include_router(auth.router)
 app.include_router(centres.router)
+app.include_router(centres.tests_router)
 app.include_router(bookings.router)
 app.include_router(payments.router)
 
@@ -28,5 +29,5 @@ def root():
 
 @app.get("/health", tags=["health"])
 def health_check() -> dict[str, str]:
-    """Simple process health check; database readiness will be added later."""
+    """Simple process health check."""
     return {"status": "ok"}
